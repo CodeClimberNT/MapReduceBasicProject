@@ -67,6 +67,9 @@ implements Tool {
     job.setMapOutputKeyClass(Text.class);
     job.setMapOutputValueClass(IntWritable.class);
     
+    // Set Combiner Class
+    // job.setCombinerClass(CombinerBigData.class);
+
     // Set reduce class
     job.setReducerClass(ReducerBigData.class);
         
