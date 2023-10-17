@@ -1,2 +1,4 @@
 example_data/
 example_out/
+target/
+!target/MapReduceProject-1.0.0.jar
