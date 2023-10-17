@@ -23,9 +23,10 @@ class MapperBigData extends Mapper<LongWritable, // Input key type
 
         // input format: id,date,temp
         // Split line and retrieve id and temp
-        String sensorId = value.toString().split(",")[0];
+        String sensorId = value.toString().split(",")[0].toLowerCase();
         Double temp = Double.parseDouble(value.toString().split(",")[2]);
-
+        
+        
         // emit the pair (id, temp)
         context.write(new Text(sensorId),
                 new DoubleWritable(temp));

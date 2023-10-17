@@ -23,20 +23,19 @@ class ReducerBigData extends Reducer<Text, // Input key type
             Context context) throws IOException, InterruptedException {
 
         // take track of max min and value found during the program
-        DoubleWritable maxRecord = new DoubleWritable(Double.MAX_VALUE);
-        DoubleWritable minRecord = new DoubleWritable(Double.MIN_VALUE);
+        Double maxRecord = Double.MIN_VALUE;
+        Double minRecord = Double.MAX_VALUE;
 
         // Iterate over the set of temperatures and sum them
         for (DoubleWritable currentTemp : temperatures) {
-            if (currentTemp.compareTo(maxRecord) < 0) {
-                maxRecord = currentTemp;
+            if (currentTemp.get() > maxRecord) {
+                maxRecord = currentTemp.get();
             }
-            
-            if (currentTemp.compareTo(minRecord) > 0) {
-                minRecord = currentTemp;
+
+            if (currentTemp.get() < minRecord) {
+                minRecord = currentTemp.get();
             }
         }
-
 
         context.write(key, new Text("max=" + maxRecord + "_min=" + minRecord));
     }
