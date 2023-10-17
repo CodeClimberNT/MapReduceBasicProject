@@ -2,6 +2,7 @@ package it.polito.bigdata.hadoop;
 
 import java.io.IOException;
 
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -9,26 +10,34 @@ import org.apache.hadoop.mapreduce.Reducer;
 /**
  * Basic MapReduce Project - Reducer
  */
-class ReducerBigData extends Reducer<
-                Text,           // Input key type
-                IntWritable,    // Input value type
-                Text,           // Output key type
-                IntWritable> {  // Output value type
-    
+class ReducerBigData extends Reducer<Text, // Input key type
+        DoubleWritable, // Input value type
+        Text, // Output key type
+        Text> { // Output value type
+
     @Override
-    
+
     protected void reduce(
-        Text key, // Input key type
-        Iterable<IntWritable> values, // Input value type
-        Context context) throws IOException, InterruptedException {
+            Text key, // Input key type
+            Iterable<DoubleWritable> temperatures, // Input value type
+            Context context) throws IOException, InterruptedException {
 
-        int occurrences = 0;
+        // take track of max min and value found during the program
+        DoubleWritable maxRecord = new DoubleWritable(Double.MAX_VALUE);
+        DoubleWritable minRecord = new DoubleWritable(Double.MIN_VALUE);
 
-        // Iterate over the set of values and sum them 
-        for (IntWritable value : values) {
-            occurrences = occurrences + value.get();
+        // Iterate over the set of temperatures and sum them
+        for (DoubleWritable currentTemp : temperatures) {
+            if (currentTemp.compareTo(maxRecord) < 0) {
+                maxRecord = currentTemp;
+            }
+            
+            if (currentTemp.compareTo(minRecord) > 0) {
+                minRecord = currentTemp;
+            }
         }
-        
-        context.write(key, new IntWritable(occurrences));
+
+
+        context.write(key, new Text("max=" + maxRecord + "_min=" + minRecord));
     }
 }
