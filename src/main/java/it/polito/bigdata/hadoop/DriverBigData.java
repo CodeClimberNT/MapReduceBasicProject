@@ -72,7 +72,7 @@ public class DriverBigData extends Configured
 
     // Set reduce output key and value classes
     job.setOutputKeyClass(Text.class);
-    job.setOutputValueClass(Text.class);
+    job.setOutputValueClass(MinMaxWritable.class);
 
     // Set number of reducers
     job.setNumReduceTasks(numberOfReducers);

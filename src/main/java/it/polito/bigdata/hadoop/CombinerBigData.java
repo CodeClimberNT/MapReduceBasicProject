@@ -8,7 +8,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 /**
  * Basic MapReduce Project - Reducer
  */
-class ReducerBigData extends Reducer<Text, // Input key type
+class CombinerBigData extends Reducer<Text, // Input key type
         MinMaxWritable, // Input value type
         Text, // Output key type
         MinMaxWritable> { // Output value type
