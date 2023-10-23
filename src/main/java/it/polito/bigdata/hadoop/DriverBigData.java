@@ -65,7 +65,7 @@ public class DriverBigData extends Configured
 
     // Set map output key and value classes
     job.setMapOutputKeyClass(Text.class);
-    job.setMapOutputValueClass(DoubleWritable.class);
+    job.setMapOutputValueClass(MinMaxWritable.class);
 
     // Set reduce class
     job.setReducerClass(ReducerBigData.class);
