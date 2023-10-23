@@ -16,7 +16,7 @@
             "request": "launch",
             "mainClass": "it.polito.bigdata.hadoop.DriverBigData",
             "projectName": "MapReduceProject",
-            "args": ["2", "example_data/", "example_out/"]
+            "args": ["1", "example_data/", "example_out/"]
         }
     ]
 }

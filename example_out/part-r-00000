@@ -1,7 +1,5 @@
-count	3
-document	2
-for	2
-hadoop	7
-of	1
-spark	1
-the	5
+big	Sentence#3
+data	Sentence#3
+hadoop	Sentence#3, Sentence#2, Sentence#1
+java	Sentence#2
+spark	Sentence#2, Sentence#1
